@@ -1,0 +1,37 @@
+.nba-standings {
+    text-align: center;
+    padding: 20px;
+}
+
+.team-schedule {
+    margin-bottom: 30px;
+}
+
+.schedule-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.winner-logo {
+    width: 70px;
+}
+
+.loser-logo {
+    opacity: 0.3;
+}
