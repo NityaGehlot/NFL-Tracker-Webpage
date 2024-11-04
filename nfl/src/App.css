@@ -24,6 +24,27 @@ main {
     align-items: center;
 }
 
+/* Table for stat leaders */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+/*
+
+
+
+
 /* Navigation Bar */
 .navbar {
     display: flex;
@@ -58,3 +79,4 @@ main {
         transform: skew(-20deg) scaleX(1.1);
         background-color: #666;
     }
+
