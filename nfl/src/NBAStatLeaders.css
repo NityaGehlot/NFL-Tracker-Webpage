@@ -3,12 +3,28 @@
     overflow-y: auto; /* Enable vertical scrolling */
     border: 1px solid #ccc; /* Optional: add a border around the table */
     border-radius: 5px; /* Optional: rounded corners */
-    margin-top: 20px; /* Optional: space above the table */
+    /*margin-top: 1px; !* Adjusted space above the table (reduced from 20px to 10px) *!*/
 }
 
 table {
     width: 100%; /* Make the table take the full width */
     border-collapse: collapse; /* Collapses the table borders */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+}
+
+thead {
+    margin: 0; /* Ensure no margin around the header */
+    padding: 0; /* Ensure no padding around the header */
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #a2a4a6; /* Background color for header */
+    z-index: 1;
+    border-bottom: 2px solid #ccc; /* Optional: add border for better visibility */
+    padding: 10px; /* Optional: add padding for readability */
 }
 
 th, td {
