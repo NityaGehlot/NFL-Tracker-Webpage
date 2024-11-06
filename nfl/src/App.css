@@ -6,44 +6,36 @@ body, html, #root, .app {
     flex-direction: column;
     height: 100%;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevents any scroll on the body */
 }
 
 .title {
-    flex: 1;
+    flex: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3em;
     font-weight: bold;
+    z-index: 10; /* Ensure the title stays above other content */
+    padding-top: 20px; /* Optional: Add some space at the top of the page */
 }
 
 main {
-    flex: 3;
+    flex: 1;  /* Main content area will take remaining space */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align content to the top */
+    overflow-y: auto; /* Enables scrolling */
+    padding-bottom: 80px; /* Prevent content from being hidden behind navbar */
 }
 
-/* Table for stat leaders */
-table {
-    width: 100%;
-    border-collapse: collapse;
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin-top: 20px;
 }
-
-th, td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-}
-/*
-
-
-
 
 /* Navigation Bar */
 .navbar {
@@ -51,6 +43,11 @@ th {
     justify-content: space-around;
     padding: 20px 0;
     background-color: #333;
+    position: fixed;  /* Fixed at the bottom */
+    bottom: 0;        /* Align to the bottom of the screen */
+    left: 0;          /* Align to the left */
+    width: 100%;      /* Ensure it spans the full width */
+    z-index: 1000;    /* Ensure it's on top of other content */
 }
 
 /* Parallelogram Button Style */
@@ -69,14 +66,41 @@ th {
     margin: 0 10px; /* Small spacing between items */
 }
 
-    .nav-item span {
-        display: block;
-        transform: skew(20deg); /* Corrects text skew */
-    }
+.nav-item span {
+    display: block;
+    transform: skew(20deg); /* Corrects text skew */
+}
 
-    /* Button Hover Effect */
-    .nav-item:hover {
-        transform: skew(-20deg) scaleX(1.1);
-        background-color: #666;
-    }
+/* Button Hover Effect */
+.nav-item:hover {
+    transform: skew(-20deg) scaleX(1.1);
+    background-color: #666;
+}
 
+/* Styling for dropdown menus */
+select {
+    margin-top: 10px; /* Ensure space from the top of the dropdown */
+    padding: 8px 12px; /* Padding for dropdowns */
+    font-size: 1em; /* Font size for readability */
+    border: 1px solid #ccc; /* Border for dropdown */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    transition: border 0.3s ease; /* Smooth border transition */
+}
+
+/* Optional: Add border color change on focus/hover */
+select:hover, select:focus {
+    border-color: #4caf50; /* Green color for focus/hover */
+    border-bottom-color: #00796b;
+    border-left-color: #00796b;
+    border-width: thick;
+}
+
+/* Add space below the table content */
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+}

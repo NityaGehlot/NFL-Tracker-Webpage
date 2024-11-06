@@ -17,7 +17,7 @@ function App() {
             <div className="app">
                 {/* Big title */}
                 <header className="title">
-                    <h1>My React Webpage</h1>
+                    {/*<h1>My React Webpage</h1>*/}
                 </header>
 
                 {/* Main content area where different pages are displayed */}
@@ -35,7 +35,7 @@ function App() {
                 <nav className="navbar">
                     <Link to="/page1" className="nav-item"><span>NBA Standings</span></Link>
                     <Link to="/page2" className="nav-item"><span>NBA Fantasy</span></Link>
-                    <Link to="/page3" className="nav-item"><span>NBA Stat Leaders</span></Link>
+                    <Link to="/page3" className="nav-item"><span>Team/Player Stats</span></Link>
                     <Link to="/page4" className="nav-item"><span>Section 4</span></Link>
                 </nav>
             </div>
