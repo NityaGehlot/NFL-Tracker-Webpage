@@ -1,0 +1,210 @@
+/* Table container adjustments */
+.table-container {
+    max-height: 400px; /* Set a maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border around the table */
+    border-radius: 5px; /* Optional: rounded corners */
+    margin-top: 50px; /* Adjust this value to move the table down */
+    margin-bottom: 50px; /* Add space below the table */
+}
+
+/* Table adjustments */
+table {
+    width: 100%; /* Make the table take the full width */
+    border-collapse: collapse; /* Collapses the table borders */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+}
+
+/* Table header adjustments */
+thead {
+    margin: 0; /* Ensure no margin around the header */
+    padding: 0; /* Ensure no padding around the header */
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #007b6b; /* Background color for header */
+    z-index: 1;
+    border-bottom: 2px solid #cccccc; /* Optional: add border for better visibility */
+    border-right: 2px solid #ccc; /* Add right border to header */
+    padding: 10px; /* Optional: add padding for readability */
+}
+
+th, td {
+    padding: 10px; /* Adds padding to cells */
+    text-align: center; /* Aligns text to the left */
+    border-bottom: 2px solid #ccc; /* Adds a bottom border for rows */
+    border-right: 2px solid #ccc; /* Add right border for columns */
+}
+
+th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
+
+/* Highlighting style for sorted column */
+.sorted-column {
+    background-color: #e0f7fa; /* Light blue background for the sorted column */
+    font-weight: bold;
+}
+
+/* Additional styling for the header of the sorted column */
+.sorted-column-header {
+    background-color: #00796b; /* Darker background for header */
+    color: white;
+    font-weight: bold;
+}
+
+/* View toggle button adjustments */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: -50px; /* Move buttons further down from the top */
+    margin-bottom: 20px; /* Add space between buttons and table */
+}
+
+.view-toggle button {
+    color: white;
+    text-decoration: none;
+    padding: 20px 30px; /* Padding adjusted for parallelogram shape */
+    font-size: 1.2em;
+    display: inline-block;
+    background-color: #4caf50; /* Parallelogram base color */
+    transform: skew(-20deg); /* Apply skew for parallelogram */
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Keep slight rounding for style */
+    position: relative; /* For positioning effects */
+}
+
+/* Correct text skew inside the button */
+.view-toggle button span {
+    display: block;
+    transform: skew(20deg); /* Corrects text skew */
+}
+
+/* Hover effect for buttons */
+.view-toggle button:hover {
+    transform: skew(-20deg) scaleX(1.1); /* Enlarges on hover */
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Underline effect */
+.view-toggle button::after {
+    content: '';
+    display: block;
+    height: 4px; /* Height of the underline */
+    background-color: #00796b; /* Color of the underline */
+    width: 100%; /* Full width */
+    position: absolute; /* Position it absolutely */
+    bottom: -5px; /* Position it just below the button */
+    left: 0; /* Align to the left */
+    transform: scaleX(0); /* Initial scale set to 0 */
+    transition: transform 0.3s ease; /* Smooth transition for scale effect */
+}
+
+/* Show the underline on hover */
+.view-toggle button:hover::after {
+    transform: scaleX(1); /* Scale to full width on hover */
+}
+
+/* Styling for dropdown menus */
+select {
+    /* Move dropdowns down */
+    /* Add small space below dropdowns */
+
+    /* top, right, bottom, left */
+    margin: 20px 100px -10px 5px;
+
+    padding: 8px 12px; /* Padding for dropdowns */
+    font-size: 1em; /* Font size for readability */
+    border: 1px solid #ccc; /* Border for dropdown */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    transition: border 0.3s ease; /* Smooth border transition */
+}
+
+/* Optional: Add border color change on focus/hover */
+select:hover, select:focus {
+    border-color: #4caf50; /* Green color for focus/hover */
+    border-bottom-color: #00796b;
+    border-left-color: #00796b;
+    border-width: thick;
+}
+
+
+
+
+
+/* Centering key table container */
+.key-table {
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center; /* Center the content of the key table */
+    z-index: 10; /* Ensure it's above other content (like the table) */
+    background-color: #fff; /* Set a background color to avoid content showing through */
+    padding: 0; /* Remove padding to avoid space */
+}
+
+/* Optional: Remove space from the heading (Stat Key:) */
+.key-table h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0; /* Remove space above the Stat Key heading */
+    margin-bottom: 0; /* Remove space below the Stat Key heading */
+    background-color: #f2f2f2; /* Background for key table header */
+    padding: 5px 10px; /* Optional padding for better spacing */
+    border-radius: 4px; /* Optional rounded corners */
+}
+
+/* Adjusting the key items container to center its children */
+.key-items {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    gap: 50px; /* Space between the key items */
+    flex-wrap: wrap; /* Ensure they wrap on smaller screens */
+}
+
+/* Styling individual key items */
+.key-item {
+    font-size: 18px;
+    display: flex;
+    align-items: center; /* Vertically align the text and the box */
+    gap: 10px; /* Space between the color box and text */
+}
+
+.color-box {
+    width: 20px;  /* Adjust this value as per your requirement */
+    height: 20px;  /* Same as above */
+    border-radius: 4px;  /* Rounded corners */
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.key-item span {
+    color: black; /* Make the text black */
+    font-weight: bold;
+}
+
+
+
+
+
