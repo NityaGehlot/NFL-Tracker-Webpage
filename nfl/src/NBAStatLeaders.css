@@ -118,8 +118,12 @@ tr:hover {
 
 /* Styling for dropdown menus */
 select {
-    margin-top: 20px; /* Move dropdowns down */
-    margin-bottom: -10px; /* Add small space below dropdowns */
+    /* Move dropdowns down */
+    /* Add small space below dropdowns */
+
+    /* top, right, bottom, left */
+    margin: 20px 100px -10px 5px;
+
     padding: 8px 12px; /* Padding for dropdowns */
     font-size: 1em; /* Font size for readability */
     border: 1px solid #ccc; /* Border for dropdown */
@@ -137,18 +141,28 @@ select:hover, select:focus {
 }
 
 
+
+
+
 /* Centering key table container */
 .key-table {
     margin-bottom: 20px;
     font-family: Arial, sans-serif;
     text-align: center; /* Center the content of the key table */
+    z-index: 10; /* Ensure it's above other content (like the table) */
+    background-color: #fff; /* Set a background color to avoid content showing through */
+    padding: 0; /* Remove padding to avoid space */
 }
 
+/* Optional: Remove space from the heading (Stat Key:) */
 .key-table h4 {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 5px; /* Add space below the Stat Key heading */
-    margin-bottom: 10px; /* Add space below the Stat Key heading */
+    margin-top: 0; /* Remove space above the Stat Key heading */
+    margin-bottom: 0; /* Remove space below the Stat Key heading */
+    background-color: #f2f2f2; /* Background for key table header */
+    padding: 5px 10px; /* Optional padding for better spacing */
+    border-radius: 4px; /* Optional rounded corners */
 }
 
 /* Adjusting the key items container to center its children */
@@ -156,6 +170,7 @@ select:hover, select:focus {
     display: flex;
     justify-content: center; /* Center items horizontally */
     gap: 50px; /* Space between the key items */
+    flex-wrap: wrap; /* Ensure they wrap on smaller screens */
 }
 
 /* Styling individual key items */
@@ -184,11 +199,12 @@ select:hover, select:focus {
     background-color: red;
 }
 
-
 .key-item span {
     color: black; /* Make the text black */
     font-weight: bold;
 }
+
+
 
 
 

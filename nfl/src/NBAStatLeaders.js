@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './NBAStatLeaders.css';
 
+
+// add different years of stats
+// fix three pointer
+
+
 function NBAStatLeaders() {
     const [leaders, setLeaders] = useState([]);
     const [error, setError] = useState(null);
@@ -218,56 +223,62 @@ function NBAStatLeaders() {
 
             {view === 'players' && (
                 <>
-                    <label htmlFor="stat-type-select">Select Stat Type:</label>
-                    <select id="stat-type-select" value={selectedStatType} onChange={handleStatTypeChange}
-                            disabled={statCategory === 'percentages' || statCategory === 'fouls'}>
-                        <option value="season">Season Stats</option>
-                        <option value="per_game">Per Game Stats</option>
-                    </select>
+                    <div className="dropdown-container">
+                        <div className="dropdown-item">
+                            <label htmlFor="stat-type-select">Select Stat Type:</label>
+                            <select id="stat-type-select" value={selectedStatType} onChange={handleStatTypeChange}
+                                    disabled={statCategory === 'percentages' || statCategory === 'fouls'}>
+                                <option value="season">Season Stats</option>
+                                <option value="per_game">Per Game Stats</option>
+                            </select>
 
-                    <label htmlFor="stat-category-select">Select Stat Category:</label>
-                    <select id="stat-category-select" value={statCategory} onChange={handleStatCategoryChange}>
-                        <option value="offensive">Offensive Stats</option>
-                        <option value="defensive">Defensive Stats</option>
-                        <option value="percentages">Percentages</option>
-                        <option value="fouls">Foul Stats</option>
-                    </select>
+                            <label htmlFor="stat-category-select">Select Stat Category:</label>
+                            <select id="stat-category-select" value={statCategory} onChange={handleStatCategoryChange}>
+                                <option value="offensive">Offensive Stats</option>
+                                <option value="defensive">Defensive Stats</option>
+                                <option value="percentages">Percentages</option>
+                                <option value="fouls">Foul Stats</option>
+                            </select>
 
-                    <label htmlFor="sort-stat-select">Sort By:</label>
-                    <select id="sort-stat-select" value={sortStat} onChange={handleSortStatChange}>
-                        <option value="N/A">N/A</option>
-                        {/* Default to sorting by rank */}
-                        {statCategory === 'offensive' && (
-                            <>
-                                <option value="points">Points</option>
-                                <option value="assists">Assists</option>
-                                <option value="rebounds">Rebounds</option>
-                                <option value="turnovers">Turnovers</option>
-                            </>
-                        )}
-                        {statCategory === 'defensive' && (
-                            <>
-                                <option value="steals">Steals</option>
-                                <option value="blocks">Blocks</option>
-                            </>
-                        )}
-                        {statCategory === 'percentages' && (
-                            <>
-                                <option value="field_goals_pct">Field Goal %</option>
-                                <option value="two_points_pct">2 Pointer %</option>
-                                <option value="three_points_pct">3 Pointer %</option>
-                                <option value="free_throws_pct">Free Throw %</option>
-                            </>
-                        )}
-                        {statCategory === 'fouls' && (
-                            <>
-                                <option value="personal_fouls">Personal Fouls</option>
-                                <option value="tech_fouls">Technical Fouls</option>
-                                <option value="flagrant_fouls">Flagrant Fouls</option>
-                                <option value="foulouts">Foulouts</option>
-                            </>
-                        )}
-                    </select>
+                            <label htmlFor="sort-stat-select">Sort By:</label>
+                            <select id="sort-stat-select" value={sortStat} onChange={handleSortStatChange}>
+                                <option value="N/A">N/A</option>
+                                {/* Default to sorting by rank */}
+                                {statCategory === 'offensive' && (
+                                    <>
+                                        <option value="points">Points</option>
+                                        <option value="assists">Assists</option>
+                                        <option value="rebounds">Rebounds</option>
+                                        <option value="turnovers">Turnovers</option>
+                                    </>
+                                )}
+                                {statCategory === 'defensive' && (
+                                    <>
+                                        <option value="steals">Steals</option>
+                                        <option value="blocks">Blocks</option>
+                                    </>
+                                )}
+                                {statCategory === 'percentages' && (
+                                    <>
+                                        <option value="field_goals_pct">Field Goal %</option>
+                                        <option value="two_points_pct">2 Pointer %</option>
+                                        <option value="three_points_pct">3 Pointer %</option>
+                                        <option value="free_throws_pct">Free Throw %</option>
+                                    </>
+                                )}
+                                {statCategory === 'fouls' && (
+                                    <>
+                                        <option value="personal_fouls">Personal Fouls</option>
+                                        <option value="tech_fouls">Technical Fouls</option>
+                                        <option value="flagrant_fouls">Flagrant Fouls</option>
+                                        <option value="foulouts">Foulouts</option>
+                                    </>
+                                )}
+                            </select>
+
+                        </div>
+                    </div>
+
 
                     {error && <p>Error: {error}</p>}
                     <div className="table-container">
