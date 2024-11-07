@@ -8,9 +8,9 @@ import FantasyPlayerInfo from './FantasyPlayerInfo';
 
 // Define simple components for each page
 const Home = () => <div className="content"><h2>Welcome to the Homepage!</h2></div>;
-const PageTwo = () => <div className="content"><h2>NBA Fantasy</h2></div>;
+const PageTwo = () => <div className="content"><h2>???</h2></div>;
 const PageThree = () => <div className="content"><h2>NBA Stat Leaders</h2></div>;
-const PageFour = () => <div className="content"><h2>Page Four Content</h2></div>;
+const PageFour = () => <div className="content"><h2>NBA Fantasy</h2></div>;
 
 function App() {
     return (
