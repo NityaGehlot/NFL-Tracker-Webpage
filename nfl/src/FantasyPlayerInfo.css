@@ -1,0 +1,84 @@
+.player-photo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.player-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.player-data {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    grid-gap: 20px;  /* Spacing between the boxes */
+    margin-top: 20px;
+    justify-items: center;  /* Center the content in each box */
+}
+
+/* Each box will be a fixed size */
+.data-box {
+    padding: 15px;
+    background-color: #ffad33; /* Base shade of orange */
+    border-radius: 8px;
+    font-size: 16px;  /* Slightly smaller text for a better fit */
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    width: 150px;  /* Fixed width */
+    height: 150px;  /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition for hover */
+}
+
+/* Brick-like effect: Offset every other row */
+.player-data > .data-box:nth-child(odd) {
+    grid-column: span 1;  /* Make the odd-numbered boxes span 2 columns */
+}
+
+.player-data > .data-box:nth-child(even) {
+    grid-column: span 1;  /* Keep even-numbered boxes at 1 column */
+}
+
+/* Color variations */
+.data-box:nth-child(odd) {
+    background-color: #ff7f32;  /* A different shade of orange */
+}
+
+.data-box:nth-child(even) {
+    background-color: #ff9f42;  /* Another shade of orange */
+}
+
+/* Hover effect for expanding boxes */
+.data-box:hover {
+    transform: scale(1.1);  /* Make the box slightly bigger on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Add a shadow for depth */
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.suggestions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.suggestions-list li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f4f4f4;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.suggestions-list li:hover {
+    background-color: #ddd;
+}

@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import NBAStandings from './NBAStandings';
 import NBAStatLeaders from './NBAStatLeaders';
+import FantasyPlayerInfo from './FantasyPlayerInfo';
 
 // Define simple components for each page
 const Home = () => <div className="content"><h2>Welcome to the Homepage!</h2></div>;
@@ -27,7 +28,7 @@ function App() {
                         <Route path="/page1" element={<NBAStandings />} />
                         <Route path="/page2" element={<PageTwo />} />
                         <Route path="/page3" element={<NBAStatLeaders />} />
-                        <Route path="/page4" element={<PageFour />} />
+                        <Route path="/page4" element={<FantasyPlayerInfo />} />
                     </Routes>
                 </main>
 
