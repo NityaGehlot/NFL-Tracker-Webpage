@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './NBAStatLeaders.css';
 
 
-// add different years of stats
-// fix three pointer
+// add search bar
 
 
 function NBAStatLeaders() {
@@ -50,7 +49,7 @@ function NBAStatLeaders() {
                     { method: 'GET', headers: { accept: 'application/json' } }
                 );
 
-                if (!response.ok) throw new Error('Failed to fetch data');
+                // if (!response.ok) throw new Error('Failed to fetch data');
 
                 const data = await response.json();
 
@@ -188,7 +187,7 @@ function NBAStatLeaders() {
                 <>
                     <div className="dropdown-container">
                         <div className="dropdown-item">
-                            <label htmlFor="year-select">Select Year:</label>
+                            <label htmlFor="year-select" className="label-box">Select Year:</label>
                             <select
                                 id="year-select"
                                 value={selectedYear}
@@ -210,14 +209,14 @@ function NBAStatLeaders() {
                             </select>
 
 
-                            <label htmlFor="stat-type-select">Select Stat Type:</label>
+                            <label htmlFor="stat-type-select" className="label-box">Select Stat Type:</label>
                             <select id="stat-type-select" value={selectedStatType} onChange={handleStatTypeChange}
                                     disabled={statCategory === 'percentages' || statCategory === 'fouls'}>
                                 <option value="season">Total Season Stats</option>
                                 <option value="per_game">Per Game Stats</option>
                             </select>
 
-                            <label htmlFor="stat-category-select">Select Stat Category:</label>
+                            <label htmlFor="stat-category-select" className="label-box">Select Stat Category:</label>
                             <select id="stat-category-select" value={statCategory} onChange={handleStatCategoryChange}>
                                 <option value="offensive">Offensive Stats</option>
                                 <option value="defensive">Defensive Stats</option>
@@ -225,7 +224,7 @@ function NBAStatLeaders() {
                                 <option value="fouls">Foul Stats</option>
                             </select>
 
-                            <label htmlFor="sort-stat-select">Sort By:</label>
+                            <label htmlFor="sort-stat-select" className="label-box">Sort By:</label>
                             <select id="sort-stat-select" value={sortStat} onChange={handleSortStatChange}>
                                 <option value="N/A">N/A</option>
                                 {/* Default to sorting by rank */}

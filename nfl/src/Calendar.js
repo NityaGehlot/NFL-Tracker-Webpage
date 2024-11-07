@@ -113,7 +113,7 @@ const Calendar = () => {
             <div className="date-dropdown-container">
                 {/* Year Dropdown */}
                 <div className="date-dropdown">
-                    <label htmlFor="year">Select Year:</label>
+                    <label htmlFor="year" className="label-box">Select Year:</label>
                     <select id="year" value={selectedYear} onChange={handleYearChange}>
                         {Array.from({ length: 11 }, (_, i) => 2024 - i).map((year) => (
                             <option key={year} value={year}>{year}</option>
@@ -123,7 +123,7 @@ const Calendar = () => {
 
                 {/* Month Dropdown */}
                 <div className="date-dropdown">
-                    <label htmlFor="month">Select Month:</label>
+                    <label htmlFor="month" className="label-box">Select Month:</label>
                     <select id="month" value={selectedMonth} onChange={handleMonthChange}>
                         {Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0')).map((month) => (
                             <option key={month} value={month}>{month}</option>
@@ -133,7 +133,7 @@ const Calendar = () => {
 
                 {/* Day Dropdown */}
                 <div className="date-dropdown">
-                    <label htmlFor="day">Select Day:</label>
+                    <label htmlFor="day" className="label-box">Select Day:</label>
                     <select id="day" value={selectedDay} onChange={handleDayChange}>
                         {daysInMonth.map((day) => (
                             <option key={day} value={day}>{day}</option>

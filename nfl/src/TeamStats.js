@@ -273,7 +273,7 @@ const TeamStats = () => {
                     <div className="dropdown-container">
                         {/* Team selection dropdown */}
                         <div className="dropdown-item">
-                            <label htmlFor="team">Select Team: </label>
+                            <label htmlFor="team" className="label-box">Select Team: </label>
                             <select
                                 id="team"
                                 value={selectedTeamId}
@@ -289,7 +289,7 @@ const TeamStats = () => {
 
                         {/* Stat category dropdown */}
                         <div className="dropdown-item">
-                            <label htmlFor="category">Select Stat Category: </label>
+                            <label htmlFor="category" className="label-box">Select Stat Category: </label>
                             <select
                                 id="category"
                                 value={selectedCategory}
@@ -303,7 +303,7 @@ const TeamStats = () => {
 
                         {/* View dropdown */}
                         <div className="dropdown-item">
-                            <label htmlFor="view">View: </label>
+                            <label htmlFor="view" className="label-box">View: </label>
                             <select
                                 id="view"
                                 value={selectedView}

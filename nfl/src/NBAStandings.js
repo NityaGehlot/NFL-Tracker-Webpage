@@ -194,7 +194,7 @@ class NBAStandings extends Component {
                         <div className="dropdown-container">
                             {/* Dropdown for selecting year */}
                             <div className="year-dropdown">
-                                <label htmlFor="year">Select Year: </label>
+                                <label htmlFor="year" className="label-box">Select Year: </label>
                                 <select id="year" value={selectedYear} onChange={this.handleYearChange}>
                                     {this.years.map(year => (
                                         <option key={year} value={year}>{year}</option>
@@ -204,7 +204,7 @@ class NBAStandings extends Component {
 
                             {/* Dropdown for sorting */}
                             <div className="filter-dropdown">
-                                <label htmlFor="filter">Filter by: </label>
+                                <label htmlFor="filter" className="label-box">Filter by: </label>
                                 <select id="filter" value={selectedFilter} onChange={this.handleFilterChange}>
                                     <option value="NBA">NBA (All Teams)</option>
                                     <option value="EASTERN CONFERENCE">Eastern Conference</option>
