@@ -195,7 +195,7 @@ function NBAStatLeaders() {
 
             {/* Search Bar */}
             <div className="search-container">
-                <label htmlFor="player-search">Search Players:</label>
+                <label htmlFor="player-search" className="label-box">Search Players:</label>
                 <input
                     type="text"
                     id="player-search"
