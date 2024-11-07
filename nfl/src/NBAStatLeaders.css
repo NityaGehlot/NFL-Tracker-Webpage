@@ -124,6 +124,14 @@ tr:hover {
     font-weight: bold;
 }
 
+/* NBAStatLeaders.css */
+
+.highlighted {
+    background-color: lightgreen;
+}
+
+
+
 
 
 

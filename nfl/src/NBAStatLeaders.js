@@ -18,6 +18,7 @@ function NBAStatLeaders() {
     const [teamDetails, setTeamDetails] = useState(null); // New state to store team details (conference, division)
     const [selectedYear, setSelectedYear] = useState('2024'); // Default year
     const [cachedData, setCachedData] = useState({}); // Cache for fetched data
+    const [searchQuery, setSearchQuery] = useState(''); // State for search input
 
 
 
@@ -79,7 +80,7 @@ function NBAStatLeaders() {
                 setLeaders(leadersData);
                 setCachedData((prevCache) => ({ ...prevCache, [selectedYear]: leadersData })); // Store data in cache
             } catch (err) {
-                setError(err.message);
+                // setError(err.message);
             }
         };
 
@@ -167,6 +168,16 @@ function NBAStatLeaders() {
         }
     });
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value.toLowerCase()); // Update search query in lowercase
+    };
+
+    const isHighlighted = (playerName) => {
+        // Only return true if there's a non-empty search query and it matches the player's name
+        return searchQuery && playerName.toLowerCase().includes(searchQuery);
+    };
+
+
 
 
 
@@ -182,9 +193,23 @@ function NBAStatLeaders() {
                 )}
             </header>
 
+            {/* Search Bar */}
+            <div className="search-container">
+                <label htmlFor="player-search">Search Players:</label>
+                <input
+                    type="text"
+                    id="player-search"
+                    placeholder="Enter player name"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
+            </div>
+
 
             {view === 'players' && (
                 <>
+
+
                     <div className="dropdown-container">
                         <div className="dropdown-item">
                             <label htmlFor="year-select" className="label-box">Select Year:</label>
@@ -330,11 +355,15 @@ function NBAStatLeaders() {
                                 </tr>
                                 </thead>
                                 <tbody>
+
+
                                 {sortedLeaders.length > 0 ? (
                                     sortedLeaders.map((leader, index) => (
                                         <tr key={index}>
                                             <td className={sortStat === 'rank' || sortStat === 'N/A' ? 'sorted-column' : ''}>{leader.rank}</td>
-                                            <td>{leader.player ? leader.player.full_name : 'N/A'}</td>
+                                            <td className={isHighlighted(leader.player.full_name) ? 'highlighted' : ''}>
+                                                {leader.player ? leader.player.full_name : 'N/A'}
+                                            </td>
                                             <td>{leader.player ? leader.player.jersey_number : 'N/A'}</td>
                                             <td>{leader.player ? leader.player.primary_position : 'N/A'}</td>
                                             <td>{leader.totalGames}</td>
