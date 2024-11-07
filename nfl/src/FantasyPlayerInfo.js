@@ -147,7 +147,7 @@ const FantasyPlayerInfo = () => {
     return (
         <div className="fantasy-player-info">
             {/* Tabs */}
-            <div className="tabs">
+            <div className="view-toggle">
                 <button
                     className={activeTab === 'lookup' ? 'active' : ''}
                     onClick={() => setActiveTab('lookup')}
