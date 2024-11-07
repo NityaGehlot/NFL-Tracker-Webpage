@@ -17,14 +17,18 @@ function NBAStatLeaders() {
     const [selectedTeam, setSelectedTeam] = useState(''); // State to hold the selected team
     const [selectedTeamData, setSelectedTeamData] = useState(null); // State for selected team data
     const [teamDetails, setTeamDetails] = useState(null); // New state to store team details (conference, division)
+    const [selectedYear, setSelectedYear] = useState('2024'); // Default year
+    const [cachedData, setCachedData] = useState({}); // Cache for fetched data
 
 
 
+
+    // Utility function to add delay
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// Function to handle rate-limited API requests with delay
+    // Function to handle rate-limited API requests with delay
     const fetchWithDelay = async (url, delayMs = 1000) => {
-        await delay(delayMs);  // Wait before each request
+        await delay(delayMs);
         return fetch(url, {
             method: 'GET',
             headers: { accept: 'application/json' }
@@ -35,10 +39,16 @@ function NBAStatLeaders() {
     useEffect(() => {
         const fetchLeaders = async () => {
             try {
-                const response = await fetchWithDelay(`https://cors-anywhere.herokuapp.com/https://api.sportradar.com/nba/trial/v8/en/seasons/2024/REG/leaders.json?api_key=vgQZFqluQZPraL49KlFtaPlNZpZ21DGwOuRovsb9`, {
-                    method: 'GET',
-                    headers: { accept: 'application/json' }
-                });
+                const cacheKey = `${selectedYear}-${selectedStatType}`;
+                if (cachedData[cacheKey]) {
+                    setLeaders(cachedData[cacheKey]);
+                    return;
+                }
+
+                const response = await fetchWithDelay(
+                    `http://localhost:8080/https://api.sportradar.com/nba/trial/v8/en/seasons/${selectedYear}/REG/leaders.json?api_key=vgQZFqluQZPraL49KlFtaPlNZpZ21DGwOuRovsb9`,
+                    { method: 'GET', headers: { accept: 'application/json' } }
+                );
 
                 if (!response.ok) throw new Error('Failed to fetch data');
 
@@ -68,37 +78,15 @@ function NBAStatLeaders() {
                 }));
 
                 setLeaders(leadersData);
+                setCachedData((prevCache) => ({ ...prevCache, [selectedYear]: leadersData })); // Store data in cache
             } catch (err) {
                 setError(err.message);
             }
         };
+
 
         fetchLeaders();
-    }, [selectedStatType, statCategory]); // Re-fetch data when stat type or category changes
-
-
-
-    // Fetch NBA teams
-    useEffect(() => {
-        const fetchTeams = async () => {
-            try {
-                const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.sportradar.com/nba/trial/v8/en/league/teams.json?api_key=vgQZFqluQZPraL49KlFtaPlNZpZ21DGwOuRovsb9', {
-                    method: 'GET',
-                    headers: { accept: 'application/json' }
-                });
-
-                if (!response.ok) throw new Error('Failed to fetch teams');
-
-                const data = await response.json();
-                console.log(data); // Check the API response
-                setTeams(data.teams); // Set the teams in state
-            } catch (err) {
-                setError(err.message);
-            }
-        };
-
-        fetchTeams();
-    }, []);
+    }, [selectedYear, selectedStatType, statCategory, cachedData]);
 
 
 
@@ -106,10 +94,7 @@ function NBAStatLeaders() {
 
 
 
-    // Button to change between players and teams
-    const toggleView = (viewType) => {
-        setView(viewType);
-    };
+
 
 
     // PLAYER STATS
@@ -184,19 +169,6 @@ function NBAStatLeaders() {
     });
 
 
-    // TEAM STATS
-    const handleTeamChange = async (event) => {
-        const teamName = event.target.value;
-        setSelectedTeam(teamName);
-
-        // Fetch team details or statistics here (this is an example, modify as needed)
-        const teamData = teams.find(team => team.name === teamName);
-        if (teamData) {
-            setSelectedTeamData(teamData); // Set the selected team data
-        }
-    };
-
-
 
 
 
@@ -212,23 +184,36 @@ function NBAStatLeaders() {
             </header>
 
 
-            <div className="view-toggle">
-                <button onClick={() => toggleView('players')} className={view === 'players' ? 'active' : ''}>Player
-                    Stats
-                </button>
-                <button onClick={() => toggleView('teams')} className={view === 'teams' ? 'active' : ''}>Team Stats
-                </button>
-            </div>
-
-
             {view === 'players' && (
                 <>
                     <div className="dropdown-container">
                         <div className="dropdown-item">
+                            <label htmlFor="year-select">Select Year:</label>
+                            <select
+                                id="year-select"
+                                value={selectedYear}
+                                onChange={(e) => setSelectedYear(e.target.value)}
+                            >
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                {/* Add more years as needed */}
+                            </select>
+
+
                             <label htmlFor="stat-type-select">Select Stat Type:</label>
                             <select id="stat-type-select" value={selectedStatType} onChange={handleStatTypeChange}
                                     disabled={statCategory === 'percentages' || statCategory === 'fouls'}>
-                                <option value="season">Season Stats</option>
+                                <option value="season">Total Season Stats</option>
                                 <option value="per_game">Per Game Stats</option>
                             </select>
 
@@ -404,41 +389,41 @@ function NBAStatLeaders() {
             )}
 
 
-            {view === 'teams' && (
-                <>
-                    {error && <p>Error: {error}</p>}
-                    <div className="table-container">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Team City</th>
-                                <th>Team Name</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {teams.length > 0 ? (
-                                // Filter to show only specific teams based on indexes and then sort by market name
-                                teams.filter((team, index) =>
-                                    [1, 5, 7, 8, 9, 10, 17, 19, 20, 21, 24, 25, 27, 28, 31, 32, 33, 34, 35, 38, 39, 41, 43, 46, 47, 56, 57, 58, 60, 63].includes(index)
-                                ) // Only include specific teams based on indexes
-                                    .sort((a, b) => a.market.localeCompare(b.market)) // Sort alphabetically by the market name
-                                    .map((team, index) => (
-                                        <tr key={index}>
-                                            <td>{team.market + ' (' + team.alias + ')'}</td>
-                                            <td>{team.name}</td>
-                                        </tr>
-                                    ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="4">No data available</td>
-                                    {/* Adjusted to colSpan to match table structure */}
-                                </tr>
-                            )}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            )}
+            {/*{view === 'teams' && (*/}
+            {/*    <>*/}
+            {/*        {error && <p>Error: {error}</p>}*/}
+            {/*        <div className="table-container">*/}
+            {/*            <table>*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th>Team City</th>*/}
+            {/*                    <th>Team Name</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {teams.length > 0 ? (*/}
+            {/*                    // Filter to show only specific teams based on indexes and then sort by market name*/}
+            {/*                    teams.filter((team, index) =>*/}
+            {/*                        [1, 5, 7, 8, 9, 10, 17, 19, 20, 21, 24, 25, 27, 28, 31, 32, 33, 34, 35, 38, 39, 41, 43, 46, 47, 56, 57, 58, 60, 63].includes(index)*/}
+            {/*                    ) // Only include specific teams based on indexes*/}
+            {/*                        .sort((a, b) => a.market.localeCompare(b.market)) // Sort alphabetically by the market name*/}
+            {/*                        .map((team, index) => (*/}
+            {/*                            <tr key={index}>*/}
+            {/*                                <td>{team.market + ' (' + team.alias + ')'}</td>*/}
+            {/*                                <td>{team.name}</td>*/}
+            {/*                            </tr>*/}
+            {/*                        ))*/}
+            {/*                ) : (*/}
+            {/*                    <tr>*/}
+            {/*                        <td colSpan="4">No data available</td>*/}
+            {/*                        /!* Adjusted to colSpan to match table structure *!/*/}
+            {/*                    </tr>*/}
+            {/*                )}*/}
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </>*/}
+            {/*)}*/}
 
 
         </div>

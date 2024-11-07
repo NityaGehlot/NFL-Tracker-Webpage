@@ -73,3 +73,111 @@ table tr:nth-child(even) {
     font-weight: bold;
     text-align: center;
 }
+
+
+
+/* View toggle button adjustments */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Move buttons further down from the top */
+    margin-bottom: 20px; /* Add space between buttons and table */
+}
+
+.view-toggle button {
+    color: white;
+    text-decoration: none;
+    padding: 20px 30px; /* Padding adjusted for parallelogram shape */
+    font-size: 1.2em;
+    display: inline-block;
+    background-color: #4caf50; /* Parallelogram base color */
+    transform: skew(-20deg); /* Apply skew for parallelogram */
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Keep slight rounding for style */
+    position: relative; /* For positioning effects */
+}
+
+/* Correct text skew inside the button */
+.view-toggle button span {
+    display: block;
+    transform: skew(20deg); /* Corrects text skew */
+}
+
+/* Hover effect for buttons */
+.view-toggle button:hover {
+    transform: skew(-20deg) scaleX(1.1); /* Enlarges on hover */
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Underline effect */
+.view-toggle button::after {
+    content: '';
+    display: block;
+    height: 4px; /* Height of the underline */
+    background-color: #00796b; /* Color of the underline */
+    width: 100%; /* Full width */
+    position: absolute; /* Position it absolutely */
+    bottom: -5px; /* Position it just below the button */
+    left: 0; /* Align to the left */
+    transform: scaleX(0); /* Initial scale set to 0 */
+    transition: transform 0.3s ease; /* Smooth transition for scale effect */
+}
+
+/* Show the underline on hover */
+.view-toggle button:hover::after {
+    transform: scaleX(1); /* Scale to full width on hover */
+}
+
+/* Styling for dropdown menus */
+select {
+    /* Move dropdowns down */
+    /* Add small space below dropdowns */
+
+    /* top, right, bottom, left */
+    margin: 20px 100px -10px 5px;
+
+    padding: 8px 12px; /* Padding for dropdowns */
+    font-size: 1em; /* Font size for readability */
+    border: 1px solid #ccc; /* Border for dropdown */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    transition: border 0.3s ease; /* Smooth border transition */
+}
+
+/* Optional: Add border color change on focus/hover */
+select:hover, select:focus {
+    border-color: #4caf50; /* Green color for focus/hover */
+    border-bottom-color: #00796b;
+    border-left-color: #00796b;
+    border-width: thick;
+}
+
+
+
+
+
+/* Container for dropdowns arranged horizontally */
+.dropdown-container {
+    display: flex;
+    justify-content: center; /* Center align the dropdowns */
+    gap: 20px; /* Space between the dropdown menus */
+    margin-bottom: 20px; /* Space below dropdowns */
+}
+
+/* Dropdown styling */
+select {
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+select:hover, select:focus {
+    border-color: #4caf50;
+}

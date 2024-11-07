@@ -1,0 +1,97 @@
+/* Calendar.css */
+
+/* Add margin and padding to the screen */
+.calendar-screen {
+    padding: 20px;
+}
+
+/* Style the date dropdown container */
+.date-dropdown-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; /* Adds space between the dropdowns */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Style individual date dropdowns */
+.date-dropdown {
+    margin: 0; /* Removed margin to control spacing via container */
+}
+
+/* Style the dropdown select elements */
+.date-dropdown select {
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+    width: 150px; /* Set a width for consistency */
+}
+
+/* Hover and focus states for dropdowns */
+.date-dropdown select:hover,
+.date-dropdown select:focus {
+    border-color: #4caf50;
+    border-bottom-color: #00796b;
+    border-left-color: #00796b;
+    border-width: thick;
+}
+
+/* Make the table scrollable */
+.game-table {
+    max-height: 400px; /* Adjust height based on preference */
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table headers and cells */
+table th, table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center; /* Center-align text for readability */
+}
+
+/* Add padding to the table headers for better spacing */
+table th {
+    background-color: #f2f2f2;
+}
+
+/* Style the team logos */
+.team-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Style for error messages */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Styling for the score cell */
+.score-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the score logos */
+.score-logo {
+    width: 30px; /* Adjust size of logos */
+    height: 30px;
+    margin: 0 10px;
+}
+
+/* Styling for the score numbers */
+.score-cell span {
+    font-size: 1.2rem; /* Adjust score number size */
+}

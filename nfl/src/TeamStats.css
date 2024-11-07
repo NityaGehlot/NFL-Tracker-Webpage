@@ -1,0 +1,105 @@
+/* View toggle button adjustments */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Move buttons further down from the top */
+    margin-bottom: 20px; /* Add space between buttons and table */
+}
+
+/* Styling for the view toggle buttons */
+.view-toggle button {
+    color: white;
+    text-decoration: none;
+    padding: 20px 30px; /* Padding adjusted for parallelogram shape */
+    font-size: 1.2em;
+    display: inline-block;
+    background-color: #4caf50; /* Parallelogram base color */
+    transform: skew(-20deg); /* Apply skew for parallelogram */
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Keep slight rounding for style */
+    position: relative; /* For positioning effects */
+}
+
+/* Correct text skew inside the button */
+.view-toggle button span {
+    display: block;
+    transform: skew(20deg); /* Corrects text skew */
+}
+
+/* Hover effect for buttons */
+.view-toggle button:hover {
+    transform: skew(-20deg) scaleX(1.1); /* Enlarges on hover */
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Underline effect */
+.view-toggle button::after {
+    content: '';
+    display: block;
+    height: 4px; /* Height of the underline */
+    background-color: #00796b; /* Color of the underline */
+    width: 100%; /* Full width */
+    position: absolute; /* Position it absolutely */
+    bottom: -5px; /* Position it just below the button */
+    left: 0; /* Align to the left */
+    transform: scaleX(0); /* Initial scale set to 0 */
+    transition: transform 0.3s ease; /* Smooth transition for scale effect */
+}
+
+/* Show the underline on hover */
+.view-toggle button:hover::after {
+    transform: scaleX(1); /* Scale to full width on hover */
+}
+
+/* Table container adjustments */
+.table-container {
+    max-height: 400px; /* Set a maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border around the table */
+    border-radius: 5px; /* Optional: rounded corners */
+    margin-top: 20px; /* Adjust this value to move the table down */
+    margin-bottom: 50px; /* Add space below the table */
+}
+
+/* Table adjustments */
+table {
+    width: 100%; /* Make the table take the full width */
+    border-collapse: collapse; /* Collapses the table borders */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+}
+
+/* Table header adjustments */
+thead {
+    margin: 0; /* Ensure no margin around the header */
+    padding: 0; /* Ensure no padding around the header */
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #007b6b; /* Background color for header */
+    z-index: 1;
+    border-bottom: 2px solid #cccccc; /* Optional: add border for better visibility */
+    border-right: 2px solid #ccc; /* Add right border to header */
+    padding: 10px; /* Optional: add padding for readability */
+}
+
+th, td {
+    padding: 10px; /* Adds padding to cells */
+    text-align: center; /* Aligns text to the left */
+    border-bottom: 2px solid #ccc; /* Adds a bottom border for rows */
+    border-right: 2px solid #ccc; /* Add right border for columns */
+}
+
+th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
